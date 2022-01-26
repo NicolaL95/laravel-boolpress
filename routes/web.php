@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Preset;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
+Route::get('/preset', function () {
+    $preset_items = Preset::all();
+    return view('preset',compact('preset_items'));
+})->name('preset');
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
 Route::get('/home', 'HomeController@index')->name('dashboard');
