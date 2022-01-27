@@ -30,5 +30,8 @@ Route::get('/home', 'HomeController@index')->name('dashboard');
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
 Route::resource('preset', PresetAdminController::class);
+Route::resource('post', PostAdminController::class)->parameter('post','post:slug');
 });
 
+
+Route::resource('post', PostController::class)->only(['index','show'])->parameter('post','post:slug');

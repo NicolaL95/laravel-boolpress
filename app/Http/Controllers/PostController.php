@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+       $post_items = Post::orderByDesc('id')->paginate(5);
+       return view('post_index',compact('post_items'));
     }
 
     /**
@@ -25,6 +26,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+       return view('post_show',compact('post'));
     }
 }

@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
             $newpost->cover = $faker->imageUrl(300, 200,'Posts',true,$newpost->title);
             $newpost->slug = Str::slug($newpost->title);
             $newpost->subtitle = $faker->sentence(3);
-            $newpost->body = $faker->paragraph();
+             $newpost->body = $faker->sentence(10); 
             $newpost->save();
                                     }
     }

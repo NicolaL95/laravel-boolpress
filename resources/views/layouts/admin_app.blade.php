@@ -71,6 +71,10 @@
                   <span data-feather="shopping-cart"></span>
                   Preset
                 </a>
+                <a class="nav-link" href="{{route('admin.post.index')}}">
+                  <span data-feather="shopping-cart"></span>
+                  Post
+                </a>
             </ul>
           </div>
         </nav>

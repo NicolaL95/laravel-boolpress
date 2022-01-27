@@ -25,7 +25,7 @@ class PresetAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('preset_admin_create');
     }
 
     /**
@@ -36,7 +36,7 @@ class PresetAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

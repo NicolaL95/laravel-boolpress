@@ -35,7 +35,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     <li><a class="text-white fs_20 px-3" href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li><a class="text-white fs_20" href="{{route('preset')}}">Preset</a></li>
+                    <li><a class="text-white fs_20 px-3" href="{{route('preset')}}">Preset</a></li>
+                     <li><a class="text-white fs_20" href="{{route('post.index')}}">Blog</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
