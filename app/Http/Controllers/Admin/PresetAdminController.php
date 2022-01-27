@@ -14,7 +14,8 @@ class PresetAdminController extends Controller
      */
     public function index()
     {
-        //
+       $preset_items = Preset::all();
+       return view('preset_admin',compact('preset_items'));
     }
 
     /**

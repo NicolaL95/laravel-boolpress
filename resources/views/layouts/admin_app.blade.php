@@ -69,7 +69,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.preset.index')}}">
                   <span data-feather="shopping-cart"></span>
-                  Products
+                  Preset
                 </a>
             </ul>
           </div>

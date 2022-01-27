@@ -10019,6 +10019,18 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.bg_purple {
+  background-color: #7c10e0;
+}
+
+.fs_25 {
+  font-size: 25px;
+}
+
+.fs_20 {
+  font-size: 20px;
+}
+
 .gap_25 {
   gap: 25px;
 }
