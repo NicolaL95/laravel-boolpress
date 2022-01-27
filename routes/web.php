@@ -27,3 +27,7 @@ Route::get('/preset', function () {
 Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
 Route::get('/home', 'HomeController@index')->name('dashboard');
 });
+
+Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
+Route::resource('preset', PresetAdminController::class);
+});
