@@ -34,6 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                    <li><a class="text-white fs_20 px-3" href="{{route('admin.dashboard')}}">Dashboard</a></li>
                     <li><a class="text-white fs_20" href="{{route('preset')}}">Preset</a></li>
                     </ul>
 

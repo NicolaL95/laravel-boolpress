@@ -2,6 +2,7 @@
 @section('content')
 <div class="preset_container">
     <h1 class='text-center'>Lista Preset diponibili</h1>
+    <a class="btn btn-primary my-2" href="{{route('admin.preset.create')}}">Create</a>
       <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
@@ -23,7 +24,7 @@
                   <td><img class="w-25" src="https://picsum.photos/id/237/600/400" alt=""></td>
                   <td>
                     <div class="button_interaction">
-                      <a class="btn btn-primary" href="">View</a>
+                      <a class="btn btn-primary" href="{{route('admin.preset.show',$preset_item->id)}}">View</a>
                       <a class="btn btn-success" href="">Edit</a>
                       <a class="btn btn-danger" href="">Delete</a>
                     </div>
