@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePresetsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreatePresetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('presets', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('price',7,2)->nullable();
-            $table->string('preview')->nullable();
-            $table->text('description')->nullable();
+            $table->string('title',200);
+            $table->string('cover')->nullable();
+            $table->string('slug');
+            $table->string('subtitle')->nullable();
+            $table->string('body')->nullable();
+
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreatePresetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presets');
+        Schema::dropIfExists('posts');
     }
 }
