@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Str;
 
@@ -26,7 +27,8 @@ class PostAdminController extends Controller
      */
     public function create()
     {
-        return view('post_admin_create');
+        $categories= Category::all();
+        return view('post_admin_create',compact('categories'));
     }
 
     /**
@@ -41,12 +43,13 @@ class PostAdminController extends Controller
             'title' => ['required','unique:posts','max:200'],
             'subtitle' => ['nullable'],
             'cover' => ['nullable'],
-            'body' => ['nullable']
+            'body' => ['nullable'],
+            'category_id' => ['nullable','exists:categories,id'],
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
         Post::create($validated);   
-        return redirect()->route('post_admin_index');
+        return redirect()->route('admin.post.index');
     }
 
     /**
@@ -66,9 +69,10 @@ class PostAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+         $categories= Category::all();
+        return view('post_admin_edit',compact('post','categories'));
     }
 
     /**
@@ -93,7 +97,7 @@ class PostAdminController extends Controller
 
         $validated['slug'] = Str::slug($validated['title']);
         Post::create($validated);   
-        return redirect()->route('post_admin_index')->with('message','Post aggiornato con successo!');
+        return redirect()->route('post_admin')->with('message','Post aggiornato con successo!');
     }
 
     /**
@@ -102,9 +106,9 @@ class PostAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
        $post->delete();
-      return redirect()->route('post_admin_index')->with('message','Post eliminato con successo!');
+      return redirect()->route('admin.post.index')->with('message','Post eliminato con successo!');
     }
 }

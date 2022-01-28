@@ -2,8 +2,18 @@
 @section('content')
 <h1>Crea un nuovo post</h1>
 @include('partials.errors')
-<form action="{{route(admin.post.store,$post->id)}}" method="post">
+<form action="{{route('admin.post.store')}}" method="post">
     @csrf
+
+    <div class="mb-3">
+      <label for="cateogy_id" class="form-label"></label>
+      <select class="form-control @error ('category_id') is_invalid @enderror"  name="cateogy_id" id="cateogy_id">
+        <option value="" selected disable>Select a Category</option>
+        @foreach($categories as $category)
+        <option value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+      </select>
+    </div>
 
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>

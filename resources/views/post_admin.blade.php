@@ -25,8 +25,12 @@
                   <td>
                     <div class="button_interaction">
                       <a class="btn btn-primary" href="{{route('admin.post.show',$post_item->slug)}}">View</a>
-                      <a class="btn btn-success" href="">Edit</a>
-                      <a class="btn btn-danger" href="">Delete</a>
+                      <a class="btn btn-success" href="{{route('admin.post.edit',$post_item->slug)}}">Edit</a>
+                       <form action="{{route('admin.post.destroy',$post_item->slug)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
                     </div>
                   </td>
                 </tr>
