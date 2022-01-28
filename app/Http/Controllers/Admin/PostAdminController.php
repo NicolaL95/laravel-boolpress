@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostAdminController extends Controller
 {
@@ -39,6 +40,7 @@ class PostAdminController extends Controller
      */
     public function store(Request $request)
     {
+
        $validated = $request->validate([
             'title' => ['required','unique:posts','max:200'],
             'subtitle' => ['nullable'],
@@ -89,15 +91,15 @@ class PostAdminController extends Controller
             Rule::unique('posts')->ignore('$post->id'),
             'max:200'
         ],
-
             'subtitle' => ['nullable'],
             'cover' => ['nullable'],
-            'body' => ['nullable']
+            'body' => ['nullable'],
+            'category_id' => ['nullable','exists:categories,id']
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        Post::create($validated);   
-        return redirect()->route('post_admin')->with('message','Post aggiornato con successo!');
+        $post->update($validated);   
+        return redirect()->route('admin.post.index')->with('message','Post aggiornato con successo!');
     }
 
     /**

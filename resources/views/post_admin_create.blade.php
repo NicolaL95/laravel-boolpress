@@ -6,8 +6,8 @@
     @csrf
 
     <div class="mb-3">
-      <label for="cateogy_id" class="form-label"></label>
-      <select class="form-control @error ('category_id') is_invalid @enderror"  name="cateogy_id" id="cateogy_id">
+      <label for="category_id" class="form-label"></label>
+      <select class="form-control @error ('category_id') is_invalid @enderror"  name="category_id" id="category_id">
         <option value="" selected disable>Select a Category</option>
         @foreach($categories as $category)
         <option value="{{$category->id}}">{{$category->name}}</option>
