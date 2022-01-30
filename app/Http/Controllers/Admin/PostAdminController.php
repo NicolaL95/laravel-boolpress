@@ -5,9 +5,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 class PostAdminController extends Controller
 {
     /**
@@ -29,7 +32,9 @@ class PostAdminController extends Controller
     public function create()
     {
         $categories= Category::all();
-        return view('post_admin_create',compact('categories'));
+        $tags = Tag::all();
+
+        return view('post_admin_create',compact('categories','tags'));
     }
 
     /**
@@ -40,17 +45,24 @@ class PostAdminController extends Controller
      */
     public function store(Request $request)
     {
-
+         $user = Auth::user()->id;
        $validated = $request->validate([
             'title' => ['required','unique:posts','max:200'],
             'subtitle' => ['nullable'],
             'cover' => ['nullable'],
             'body' => ['nullable'],
             'category_id' => ['nullable','exists:categories,id'],
+            'user_id' => ['nullable'],
+            'tags'=>'exists:tags,id'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        Post::create($validated);   
+        $validated = Arr::add($validated, 'user_id', "user");
+        $newpost = Post::create($validated);
+        
+            $newpost->tags()->attach($request->tags);
+
+
         return redirect()->route('admin.post.index');
     }
 
@@ -62,6 +74,7 @@ class PostAdminController extends Controller
      */
     public function show(Post $post)
     {
+        
          return view('post_admin_show',compact('post'));
     }
 
@@ -94,11 +107,13 @@ class PostAdminController extends Controller
             'subtitle' => ['nullable'],
             'cover' => ['nullable'],
             'body' => ['nullable'],
-            'category_id' => ['nullable','exists:categories,id']
+            'category_id' => ['nullable','exists:categories,id'],
+            'tags' => 'exists:tags,id'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
         $post->update($validated);   
+          $post->tags()->sync($request->tags);
         return redirect()->route('admin.post.index')->with('message','Post aggiornato con successo!');
     }
 

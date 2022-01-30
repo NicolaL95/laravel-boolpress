@@ -1,10 +1,10 @@
 @extends('layouts.admin_app')
 @section('content')
 <h1>Crea un nuovo post</h1>
+
 @include('partials.errors')
 <form action="{{route('admin.post.store')}}" method="post">
     @csrf
-
     <div class="mb-3">
       <label for="category_id" class="form-label"></label>
       <select class="form-control @error ('category_id') is_invalid @enderror"  name="category_id" id="category_id">
@@ -14,6 +14,17 @@
         @endforeach
       </select>
     </div>
+
+
+<div class="mb-3">
+      <label for="tags" class="form-label">Tags</label>
+      <select multiple class="form-control @error ('tags') is_invalid @enderror"  name="tags[]" id="tags">
+        @foreach($tags as $tag)
+        <option value="{{$tag->id}}">{{$tag->keyword}}</option>
+        @endforeach
+      </select>
+    </div>
+
 
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>

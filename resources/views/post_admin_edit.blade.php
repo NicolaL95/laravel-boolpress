@@ -12,6 +12,22 @@
       <small id="TitleHelper" class="text-muted">Add Title</small>
     </div>
 
+    <div class="form-group">
+<label for="tags">Tags</label>
+<select multiple class="form-control" name="tags[]" id="tags">
+    @if($tags)
+        @foreach($tags as $tag)
+            <option value="{{$tag->id}}" {{$post->tags->contains($tag) ? 'selected' : ''}}>{{$tag->keyword}}</option>
+        @endforeach
+    @endif
+</select>
+</div>
+@error('tags')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+
+
      <div class="mb-3">
       <label for="category_id" class="form-label"></label>
       <select class="form-control @error ('category_id') is_invalid @enderror"  name="category_id" id="category_id">
