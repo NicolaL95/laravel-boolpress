@@ -46,7 +46,7 @@
 
     <div class="mb-3">
       <label for="cover" class="form-label">Cover Image</label>
-      <input type="text" name="cover" id="cover" class="form-control @error ('cover') is_invalid @enderror" placeholder="https//" aria-describedby="CoverHelper" value="{{$post->cover}}">
+      <input type="file" name="cover" id="cover" class="form-control @error ('cover') is_invalid @enderror" placeholder="https//" aria-describedby="CoverHelper" accept=".jpg,.png">
       <small id="CoverHelper" class="text-muted">add Cover Link</small>
     </div>
 

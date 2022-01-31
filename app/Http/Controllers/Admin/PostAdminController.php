@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+
 class PostAdminController extends Controller
 {
     /**
@@ -50,11 +52,16 @@ class PostAdminController extends Controller
        $validated = $request->validate([
             'title' => ['required','unique:posts','max:200'],
             'subtitle' => ['nullable'],
-            'cover' => ['nullable'],
+            'cover' => ['nullable','image','max:100'],
             'body' => ['nullable'],
             'category_id' => ['nullable','exists:categories,id'],
             'tags'=>'exists:tags,id'
         ]);
+        if($request->file('cover')){
+        $image_path = Storage::put('post_images', $request->file('cover'));
+        $validated['cover'] = $image_path;    
+        }
+        
 
         $validated['slug'] = Str::slug($validated['title']);
          $validated = Arr::add($validated, 'user_id', "$user");
@@ -87,7 +94,8 @@ class PostAdminController extends Controller
     public function edit(Post $post)
     {
          $categories= Category::all();
-        return view('post_admin_edit',compact('post','categories'));
+        $tags = Tag::all();
+        return view('post_admin_edit',compact('post','categories','tags'));
     }
 
     /**
@@ -105,11 +113,19 @@ class PostAdminController extends Controller
             'max:200'
         ],
             'subtitle' => ['nullable'],
-            'cover' => ['nullable'],
+           'cover' => ['nullable','image','max:100'],
             'body' => ['nullable'],
             'category_id' => ['nullable','exists:categories,id'],
             'tags' => 'exists:tags,id'
         ]);
+
+          if($request->file('cover')){
+              
+
+         Storage::delete($post->cover);
+        $image_path = Storage::put('post_images', $request->file('cover'));
+        $validated['cover'] = $image_path;    
+        }
 
         $validated['slug'] = Str::slug($validated['title']);
         $post->update($validated);   

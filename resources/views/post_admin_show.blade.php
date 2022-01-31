@@ -8,7 +8,7 @@
 <h2>Subtitle: {{ $post->subtitle }}</h2>
 <h2>Description: {{ $post->body }}</h2>
 <h2>Preview:</h2>
- <img src="{{$post->cover}}" alt="">
+ <img src="{{asset('storage/' . $post->cover)}}" alt="">
 </div>
 <div class="tags">
         <h4>Tags</h4>

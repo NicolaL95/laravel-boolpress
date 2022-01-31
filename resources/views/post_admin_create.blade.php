@@ -3,7 +3,7 @@
 <h1>Crea un nuovo post</h1>
 
 @include('partials.errors')
-<form action="{{route('admin.post.store')}}" method="post">
+<form action="{{route('admin.post.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label for="category_id" class="form-label"></label>
@@ -39,7 +39,7 @@
 
     <div class="mb-3">
       <label for="cover" class="form-label">Cover Image</label>
-      <input type="text" name="cover" id="cover" class="form-control @error ('cover') is_invalid @enderror" placeholder="Insert your image cover link" aria-describedby="CoverHelper">
+      <input type="file" name="cover" id="cover" class="form-control @error ('cover') is_invalid @enderror" placeholder="Insert your image cover link" aria-describedby="CoverHelper" accept=".jpg,.png">
       <small id="CoverHelper" class="text-muted">add Cover Link</small>
     </div>
 
