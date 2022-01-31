@@ -33,8 +33,9 @@ class PostAdminController extends Controller
     {
         $categories= Category::all();
         $tags = Tag::all();
+        $user = Auth::user();
 
-        return view('post_admin_create',compact('categories','tags'));
+        return view('post_admin_create',compact('categories','tags','user'));
     }
 
     /**
@@ -52,12 +53,11 @@ class PostAdminController extends Controller
             'cover' => ['nullable'],
             'body' => ['nullable'],
             'category_id' => ['nullable','exists:categories,id'],
-            'user_id' => ['nullable'],
             'tags'=>'exists:tags,id'
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        $validated = Arr::add($validated, 'user_id', "user");
+         $validated = Arr::add($validated, 'user_id', "$user");
         $newpost = Post::create($validated);
         
             $newpost->tags()->attach($request->tags);

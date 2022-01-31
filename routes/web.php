@@ -32,6 +32,13 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->
 Route::resource('preset', PresetAdminController::class);
 Route::resource('post', PostAdminController::class)->parameter('post','post:slug');
 });
-
-
 Route::resource('post', PostController::class)->only(['index','show'])->parameter('post','post:slug');
+
+
+Route::resource('tag', TagController::class)->only([
+    'index', 'show'
+]);
+
+Route::resource('category', CategoryController::class)->only([
+    'index', 'show'
+]);

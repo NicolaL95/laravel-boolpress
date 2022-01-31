@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category_items = Category::all();
+        return view('category_index',compact('category_items'));
     }
 
     /**

@@ -15,7 +15,6 @@
       </select>
     </div>
 
-
 <div class="mb-3">
       <label for="tags" class="form-label">Tags</label>
       <select multiple class="form-control @error ('tags') is_invalid @enderror"  name="tags[]" id="tags">

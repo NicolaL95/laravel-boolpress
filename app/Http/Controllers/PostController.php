@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+   public function filter_category($cat){
+      ddd($cat);
+      $post_items = Post::orderByDesc('id')->paginate(5);
+      return view('post_index_filter_category',compact('post_items'));
+   }
+
+    public function filter_tag(){
+      $post_items = Post::orderByDesc('id')->paginate(5);
+      return view('post_index_filter_tags',compact('post_items'));
+   }
+
     /**
      * Display a listing of the resource.
      *
