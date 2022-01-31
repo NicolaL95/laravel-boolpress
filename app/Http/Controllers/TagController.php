@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -45,9 +46,16 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show($id)
     {
-        //
+
+
+        $post_items =  DB::table('posts')
+                 ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+            ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+            ->where('tag_id','=',$id)
+            ->get();
+         return view('post_index',compact('post_items'));
     }
 
     /**
