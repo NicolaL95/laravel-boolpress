@@ -37,6 +37,7 @@
                     <li><a class="text-white fs_20 px-3" href="{{route('admin.dashboard')}}">Dashboard</a></li>
                     <li><a class="text-white fs_20 px-3" href="{{route('preset')}}">Preset</a></li>
                      <li><a class="text-white fs_20 px-3" href="{{route('post.index')}}">Blog</a></li>
+                      <li><a class="text-white fs_20 px-3" href="{{route('contacts')}}">Contacts</a></li>
                      <li><a class="text-white fs_20 px-3" href="{{route('category.index')}}">Category</a></li>
                      <li><a class="text-white fs_20 px-3" href="{{route('tag.index')}}">Tag</a></li>
                     </ul>

@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('contacts', 'PageController@contacts')->name('contacts'); 
+Route::post('contacts', 'PageController@sendForm')->name('contacts.sender'); 
 Auth::routes();
 
 Route::get('/preset', function () {
