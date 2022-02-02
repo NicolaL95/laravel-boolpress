@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Post;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/* Route::get('posts', function(){
+$post = Post::with(['category'])->paginate(3);
+return response()->json([
+    'status_code' => 'ok',
+    'response' => $post
+]);
+}); */
