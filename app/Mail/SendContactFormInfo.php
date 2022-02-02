@@ -12,16 +12,16 @@ class SendContactFormInfo extends Mailable
 {
     use Queueable, SerializesModels;
     
-    public $data;
+    public $contact;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct(Contact $contact)
     {
-        $this->data = $data;
+        $this->contact = $contact;
     }
 
     /**
