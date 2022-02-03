@@ -26,3 +26,9 @@ return response()->json([
     'response' => $post
 ]);
 }); */
+
+
+Route::get('post','API\PostController@index');
+Route::get('post/{post}','API\PostController@show');
+Route::get('category','API\CategoryController@index');
+Route::get('tag','API\TagController@index');

@@ -37,6 +37,11 @@ Route::resource('post', PostAdminController::class)->parameter('post','post:slug
 Route::resource('post', PostController::class)->only(['index','show'])->parameter('post','post:slug');
 
 
+Route::get('/vue/post', function () {
+    
+    return view('Vue.post_index');
+})->name('index.vue');
+
 Route::resource('tag', TagController::class)->only([
     'index', 'show'
 ]);

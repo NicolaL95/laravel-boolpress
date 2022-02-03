@@ -40,6 +40,7 @@
                       <li><a class="text-white fs_20 px-3" href="{{route('contacts')}}">Contacts</a></li>
                      <li><a class="text-white fs_20 px-3" href="{{route('category.index')}}">Category</a></li>
                      <li><a class="text-white fs_20 px-3" href="{{route('tag.index')}}">Tag</a></li>
+                     <li><a class="text-white fs_20 px-3" href="{{route('index.vue')}}">Vue</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
