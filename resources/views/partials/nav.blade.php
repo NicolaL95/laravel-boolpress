@@ -12,11 +12,17 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <router-link class="nav-link text-white" to="/">Home</router-link>
+                            <router-link class="nav-link text-white fs_20" to="/">Home</router-link>
                         </li>
                         <li>
-                            <router-link class="nav-link text-white" to="/posts">Posts</router-link>
+                            <router-link class="nav-link text-white fs_20" to="/posts">Posts</router-link>
                         </li>
+                         <li><a class="text-white fs_20 px-3 nav-link" href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                    <li><a class="text-white fs_20 px-3 nav-link" href="{{route('preset')}}">Preset</a></li>
+                      <li><a class="text-white fs_20 px-3 nav-link" href="{{route('contacts')}}">Contacts</a></li>
+                     <li><a class="text-white fs_20 px-3 nav-link" href="{{route('category.index')}}">Category</a></li>
+                     <li><a class="text-white fs_20 px-3 nav-link" href="{{route('tag.index')}}">Tag</a></li>
+                     <li><a class="text-white fs_20 px-3 nav-link" href="{{route('index.vue')}}">Vue</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
