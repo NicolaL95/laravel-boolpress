@@ -1,17 +1,19 @@
 <template>
   <div class="container">
-    <h2 class="text-center text-black">Lista post</h2>
+    <h1 class="text-center text-black">Lista post</h1>
     <div class="row justify-content-around align-items-center">
       <div class="post_container" v-for="post in posts.data" :key="post.index">
         <div class="card" style="width: 18rem">
           <img :src="post.cover" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{ post.title }}</h5>
+            <p>{{ post.subtitle }}</p>
             <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              {{ post.body }}
             </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <router-link class="btn btn-primary" :to="'/posts/' + post.slug"
+              >View details</router-link
+            >
           </div>
         </div>
       </div>
@@ -27,9 +29,14 @@ export default {
     };
   },
   mounted() {
-    axios.get("../api/post").then((r) => {
-      this.posts = r.data;
-    });
+    axios
+      .get("../api/post")
+      .then((r) => {
+        this.posts = r.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>

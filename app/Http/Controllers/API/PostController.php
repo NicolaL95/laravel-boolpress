@@ -51,8 +51,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-    
-      return new PostResource($post);
+       $detPost =  Post::where('slug',$post->slug)->with(['category'])->get();
+        return new PostResource($detPost);
     }
 
     /**
