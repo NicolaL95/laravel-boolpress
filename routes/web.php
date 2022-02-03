@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+
 
 Route::get('contacts', 'ContactController@contacts')->name('contacts'); 
 Route::post('contacts', 'ContactController@contacts')->name('contacts.sender'); 
@@ -34,7 +32,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->
 Route::resource('preset', PresetAdminController::class);
 Route::resource('post', PostAdminController::class)->parameter('post','post:slug');
 });
-Route::resource('post', PostController::class)->only(['index','show'])->parameter('post','post:slug');
+/* Route::resource('post', PostController::class)->only(['index','show'])->parameter('post','post:slug'); */
 
 
 Route::get('/vue/post', function () {
@@ -49,3 +47,7 @@ Route::resource('tag', TagController::class)->only([
 Route::resource('category', CategoryController::class)->only([
     'index', 'show'
 ]);
+
+Route::get('/{any}', function () {
+    return view('welcome');
+})->where('any','.*');

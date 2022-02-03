@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@extends('layouts.app')
+@extends('layouts.spa_layout')
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -65,5 +65,8 @@
         </style>
     </head>
     <body>
+        @section('content')
+        <App></App>
+        @endsection
     </body>
 </html>
