@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-         $post = Post::with(['category'])->paginate(3);
+         $post = Post::with(['category'])->orderByDesc('id')->paginate(3);
         return PostResource::collection($post);
       
         

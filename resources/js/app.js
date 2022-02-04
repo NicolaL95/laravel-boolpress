@@ -16,7 +16,7 @@ Vue.use(VueRouter)
 const Home = Vue.component('Home', require('./pages/Home.vue').default);
 const Posts = Vue.component('Posts', require('./pages/Posts.vue').default);
 const PostPage = Vue.component('PostPage', require('./pages/Postpage.vue').default);
-const _404 = Vue.component('404', require('./pages/404.vue').default);
+const _404 = Vue.component('Error_404', require('./pages/404.vue').default);
 
 const routes = [
     {
@@ -35,7 +35,7 @@ const routes = [
         component: PostPage
     },
     {
-        path: '/*',
+        path: '*',
         component: _404
     }
 

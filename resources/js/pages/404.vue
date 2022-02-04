@@ -1,5 +1,5 @@
 <template>
-  <div class="error_container">
+  <div class="page error container">
     <h1 class="text-danger text-center">Page not found.</h1>
   </div>
 </template>

@@ -2160,16 +2160,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      posts_meta: null
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     axios.get("../api/post").then(function (r) {
-      _this.posts = r.data;
-    })["catch"](function (error) {
-      console.error(error);
+      console.log(r.data.data);
+      _this.posts = r.data.data;
+      _this.posts_meta = r.data.meta;
     });
   }
 });
@@ -37952,7 +37953,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "error_container" }, [
+    return _c("div", { staticClass: "page error container" }, [
       _c("h1", { staticClass: "text-danger text-center" }, [
         _vm._v("Page not found."),
       ]),
@@ -38073,7 +38074,7 @@ var render = function () {
     _c(
       "div",
       { staticClass: "row justify-content-around align-items-center" },
-      _vm._l(_vm.posts.data, function (post) {
+      _vm._l(_vm.posts, function (post) {
         return _c("div", { key: post.index, staticClass: "post_container" }, [
           _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
             _c("img", {
@@ -53589,7 +53590,7 @@ var Home = Vue.component('Home', __webpack_require__(/*! ./pages/Home.vue */ "./
 var Posts = Vue.component('Posts', __webpack_require__(/*! ./pages/Posts.vue */ "./resources/js/pages/Posts.vue")["default"]);
 var PostPage = Vue.component('PostPage', __webpack_require__(/*! ./pages/Postpage.vue */ "./resources/js/pages/Postpage.vue")["default"]);
 
-var _404 = Vue.component('404', __webpack_require__(/*! ./pages/404.vue */ "./resources/js/pages/404.vue")["default"]);
+var _404 = Vue.component('Error_404', __webpack_require__(/*! ./pages/404.vue */ "./resources/js/pages/404.vue")["default"]);
 
 var routes = [{
   path: '/',
@@ -53604,7 +53605,7 @@ var routes = [{
   name: 'post',
   component: PostPage
 }, {
-  path: '/*',
+  path: '*',
   component: _404
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({

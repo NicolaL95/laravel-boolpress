@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="text-center text-black">Lista post</h1>
     <div class="row justify-content-around align-items-center">
-      <div class="post_container" v-for="post in posts.data" :key="post.index">
+      <div class="post_container" v-for="post in posts" :key="post.index">
         <div class="card" style="width: 18rem">
           <img :src="post.cover" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -26,17 +26,15 @@ export default {
   data() {
     return {
       posts: null,
+      posts_meta: null,
     };
   },
   mounted() {
-    axios
-      .get("../api/post")
-      .then((r) => {
-        this.posts = r.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    axios.get("../api/post").then((r) => {
+      console.log(r.data.data);
+      this.posts = r.data.data;
+      this.posts_meta = r.data.meta;
+    });
   },
 };
 </script>
